@@ -1,0 +1,23 @@
+services:
+   db:
+      container_name: mistyislandsql
+      image: mysql
+      environment:
+         MYSQL_DATABASE: 'mistydb'
+         MYSQL_USER: 'user'
+         MYSQL_PASSWORD: 'password'
+         MYSQL_ROOT_PASSWORD: 'password'
+      volumes:
+         - db:/data/mysql
+      ports:
+         - "3306:3306"
+      networks:
+         - db
+      restart: unless-stopped
+      
+networks:
+   db:
+      driver: bridge
+      
+volumes:
+   db:
